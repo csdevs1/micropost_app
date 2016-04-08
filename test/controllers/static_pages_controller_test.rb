@@ -20,4 +20,10 @@ class StaticPagesControllerTest < ActionController::TestCase
         assert_response :success # Object response should be 200 (OK)
         assert_select "title", "About | MicroPost Sample App"
     end
+    
+    test "should get contact" do
+        get :contact
+        assert_response :success # Object response should be 200 (OK)
+        assert_select "title", "Contact | MicroPost Sample App"
+    end
 end

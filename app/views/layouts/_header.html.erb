@@ -1,0 +1,22 @@
+<header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+        <span class="mdl-layout-title"><%= link_to "MicroPost Sample App", root_path, :class => "mdl-navigation__link"  %></span>
+        <!-- Add spacer, to align navigation to the right -->
+        <div class="mdl-layout-spacer"></div>
+        <nav class="mdl-navigation">
+            <%= link_to "Home", root_path, :class => "mdl-navigation__link"  %>
+            <%= link_to "About", about_path, :class => "mdl-navigation__link"  %>
+            <%= link_to "Log in", '#', :class => "mdl-navigation__link"  %>
+        </nav>
+    </div>
+</header>
+<div class="mdl-layout__drawer">
+    <span class="mdl-layout-title">Menu</span>
+    <nav class="mdl-navigation">
+        <%= link_to "Home", root_path, :class => "mdl-navigation__link"  %>
+        <%= link_to "About", about_path, :class => "mdl-navigation__link"  %>
+        <%= link_to "Contact", contact_path, :class => "mdl-navigation__link"  %>
+        <%= link_to "Help", help_path, :class => "mdl-navigation__link"  %>
+        <%= link_to "Log in", '#', :class => "mdl-navigation__link"  %>
+    </nav>
+</div>
