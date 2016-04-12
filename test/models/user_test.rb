@@ -38,13 +38,13 @@ class UserTest < ActiveSupport::TestCase
     end
     
     test "name should not be too long" do
-        # @user.name = "a" * 51
-        # assert_not @user.valid?
+         @user.name = "a" * 51
+         assert_not @user.valid?
         
-        @user.name = "a a a a a".split(" ")
-        if name.length > 4
-            assert_not @user.valid?
-        end
+      #  @user.name = "a a a a a".split(" ")
+       # if name.length > 4
+        #    assert_not @user.valid?
+        # end
     end
     
     test "email should not be too long" do
