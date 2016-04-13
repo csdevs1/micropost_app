@@ -6,7 +6,22 @@
         <nav class="mdl-navigation">
             <%= link_to "Home", root_path, :class => "mdl-navigation__link"  %>
             <%= link_to "About", about_path, :class => "mdl-navigation__link"  %>
-            <%= link_to "Log in", '#', :class => "mdl-navigation__link"  %>
+            <% if logged_in? %>
+                <%= link_to "Users", '#', :class => "mdl-navigation__link" %>
+                <!-- Dropdown Menu -->
+                <a href="" class="mdl-navigation__link"> Account</a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to "Profile", current_user %></li>
+                  <li><%= link_to "Settings", '#' %></li>
+                  <li class="divider"></li>
+                  <li>
+                    <%= link_to "Log out", logout_path, method: "delete" %>
+                  </li>
+                </ul>
+                <!--End of Dropdown Menu -->
+            <% else %>
+                <%= link_to "Log in", login_path, :class => "mdl-navigation__link"  %>
+            <% end %>
         </nav>
     </div>
 </header>
@@ -17,6 +32,21 @@
         <%= link_to "About", about_path, :class => "mdl-navigation__link"  %>
         <%= link_to "Contact", contact_path, :class => "mdl-navigation__link"  %>
         <%= link_to "Help", help_path, :class => "mdl-navigation__link"  %>
-        <%= link_to "Log in", '#', :class => "mdl-navigation__link"  %>
+        <% if logged_in? %>
+                <%= link_to "Users", '#', :class => "mdl-navigation__link" %>
+                <!-- Dropdown Menu -->
+                <a href="" class="mdl-navigation__link"> Account</a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to "Profile", current_user %></li>
+                  <li><%= link_to "Settings", '#' %></li>
+                  <li class="divider"></li>
+                  <li>
+                    <%= link_to "Log out", logout_path, method: "delete" %>
+                  </li>
+                </ul>
+                <!--End of Dropdown Menu -->
+            <% else %>
+                <%= link_to "Log in", login_path, :class => "mdl-navigation__link"  %>
+            <% end %>
     </nav>
 </div>
