@@ -9,18 +9,17 @@
             <% if logged_in? %>
                 <%= link_to "Users", '#', :class => "mdl-navigation__link" %>
                 <!-- Dropdown Menu -->
-                <a href="" class="mdl-navigation__link"> Account</a>
-                <ul class="dropdown-menu">
-                  <li><%= link_to "Profile", current_user %></li>
-                  <li><%= link_to "Settings", '#' %></li>
-                  <li class="divider"></li>
-                  <li>
-                    <%= link_to "Log out", logout_path, method: "delete" %>
-                  </li>
+                <button id="menu-list" class="mdl-button mdl-js-button mdl-button--icon" data-upgraded=",MaterialButton">
+                    <i class="material-icons">more_vert</i>
+                </button>
+                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu drop-menu" for="menu-list">
+                    <li class="mdl-menu__item"><%= link_to "Profile", current_user, :class => "mdl-navigation__link mdl-color-text--black" %></li>
+                    <li class="mdl-menu__item"><%= link_to "Settings", '#', :class => "mdl-navigation__link mdl-color-text--black" %></li>
+                    <li class="mdl-menu__item"><%= link_to "Log out", logout_path, method: "delete", :class => "mdl-navigation__link mdl-color-text--black" %></li>
                 </ul>
                 <!--End of Dropdown Menu -->
             <% else %>
-                <%= link_to "Log in", login_path, :class => "mdl-navigation__link"  %>
+                <%=  link_to "Log in", login_path, :class => "mdl-navigation__link"  %>
             <% end %>
         </nav>
     </div>
