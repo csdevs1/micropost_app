@@ -32,7 +32,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
                                     password: "password",
                                     password_confirmation: "password" }
         end
-        assert_redirected_to user_path('697925615') # '/users/697925615' # To check that a valid submission redirects to the 'user page'
+        assert_redirected_to '/users/1046959424' # '/users/697925615' # To check that a valid submission redirects to the 'user page'
         assert is_logged_in?
     end
 end
