@@ -10,7 +10,11 @@
         <%= csrf_meta_tags %>
     </head>
     <body data-no-turbolink>
-        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <% if logged_in? %>
+            <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+        <% else %>
+            <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <% end %>            
             <%= render 'layouts/header' %>
                 <% flash.each do |message_type, message| %>
                     <div class="alert alert-<%= message_type %>"><%= message %></div>

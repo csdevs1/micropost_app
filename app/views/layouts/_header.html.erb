@@ -1,49 +1,66 @@
-<header class="mdl-layout__header">
+<header class="deo-header mdl-layout__header ">
     <div class="mdl-layout__header-row">
         <span class="mdl-layout-title"><%= link_to "MicroPost Sample App", root_path, :class => "mdl-navigation__link"  %></span>
-        <!-- Add spacer, to align navigation to the right -->
         <div class="mdl-layout-spacer"></div>
-        <nav class="mdl-navigation">
-            <% if logged_in? %>
-                <%= link_to "Users", users_path, :class => "mdl-navigation__link" %>
-                <!-- Dropdown Menu -->
-                <button id="menu-list" class="mdl-button mdl-js-button mdl-button--icon" data-upgraded=",MaterialButton">
-                    <i class="material-icons">more_vert</i>
-                </button>
-                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu drop-menu" for="menu-list">
-                    <li class="mdl-menu__item"><%= link_to "Profile", current_user, :class => "mdl-navigation__link mdl-color-text--black" %></li>
-                    <li class="mdl-menu__item"><%= link_to "Settings", edit_user_path(current_user), :class => "mdl-navigation__link mdl-color-text--black" %></li>
-                    <li class="mdl-menu__item"><%= link_to "Log out", logout_path, method: "delete", :class => "mdl-navigation__link mdl-color-text--black" %></li>
-                </ul>
-                <!--End of Dropdown Menu -->
-            <% else %>
-                <%=  link_to "Log in", login_path, :class => "mdl-navigation__link"  %>
-            <% end %>
-        </nav>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+            <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
+                <i class="material-icons">search</i>
+            </label>
+            <div class="mdl-textfield__expandable-holder">
+                <input class="mdl-textfield__input" type="text" id="search">
+                <label class="mdl-textfield__label" for="search">Enter your query...</label>
+            </div>
+        </div>
+        <% if logged_in? %>
+            <%= link_to "Users", users_path, :class => "mdl-navigation__link" %>
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
+                <i class="material-icons">more_vert</i>
+            </button>
+            <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right drop-menu" for="hdrbtn">                
+                <li class="mdl-menu__item"><%= link_to "Profile", current_user, :class => "mdl-navigation__link mdl-color-text--black" %></li>
+                <li class="mdl-menu__item"><%= link_to "Settings", edit_user_path(current_user), :class => "mdl-navigation__link mdl-color-text--black" %></li>
+                <li class="mdl-menu__item"><%= link_to "Log out", logout_path, method: "delete", :class => "mdl-navigation__link mdl-color-text--black" %></li>
+            </ul>
+        <% else %>
+            <%=  link_to "Log in", login_path, :class => "mdl-navigation__link"  %>
+        <% end %>
     </div>
 </header>
-<div class="mdl-layout__drawer">
-    <span class="mdl-layout-title">Menu</span>
-    <nav class="mdl-navigation">
-        <%= link_to "Home", root_path, :class => "mdl-navigation__link"  %>
-        <%= link_to "About", about_path, :class => "mdl-navigation__link"  %>
-        <%= link_to "Contact", contact_path, :class => "mdl-navigation__link"  %>
-        <%= link_to "Help", help_path, :class => "mdl-navigation__link"  %>
-        <% if logged_in? %>
-                <%= link_to "Users", users_path, :class => "mdl-navigation__link" %>
-                <!-- Dropdown Menu -->
-                <a href="" class="mdl-navigation__link"> Account</a>
-                <ul class="dropdown-menu">
-                  <li><%= link_to "Profile", current_user %></li>
-                    <li><%= link_to "Settings", edit_user_path(current_user) %></li>
-                  <li class="divider"></li>
-                  <li>
-                    <%= link_to "Log out", logout_path, method: "delete" %>
-                  </li>
+
+<% if logged_in? %>
+
+    <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
+        <header class="demo-drawer-header">
+            <%= gravatar_for current_user %>
+            <div class="demo-avatar-dropdown">
+                <span><%= current_user.name %></span>
+                <div class="mdl-layout-spacer"></div>
+                <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                    <i class="material-icons" role="presentation">arrow_drop_down</i>
+                    <span class="visuallyhidden">Accounts</span>
+                </button>
+                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
+                    <li class="mdl-menu__item">hello@example.com</li>
+                    <li class="mdl-menu__item">info@example.com</li>
+                    <li class="mdl-menu__item"><i class="material-icons">add</i>Add another account...</li>
                 </ul>
-                <!--End of Dropdown Menu -->
-            <% else %>
-                <%= link_to "Log in", login_path, :class => "mdl-navigation__link"  %>
-            <% end %>
-    </nav>
-</div>
+            </div>
+            <span><%= current_user.username %></span>
+        </header>
+        <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
+            <%= link_to users_path, :class => "mdl-navigation__link" do %><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Home <% end %>
+            <%= link_to current_user, :class => "mdl-navigation__link" do %><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">person</i>Profile <% end %>
+            <%= link_to edit_user_path(current_user), :class => "mdl-navigation__link" do %><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">build</i>Settings <% end %>
+            <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">people</i>My connections</a>
+            <%= link_to contact_path, :class => "mdl-navigation__link" do %><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">keyboard</i>Contact <% end %>
+            <%= link_to logout_path, method: "delete", :class => "mdl-navigation__link" do %><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">&#xE879;</i>Log out <% end %>
+            <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>Inbox</a>
+            <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>Forums</a>
+            <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>Updates</a>
+            <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">shopping_cart</i>Purchases</a>
+            <div class="mdl-layout-spacer"></div>
+            <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">help_outline</i><span class="visuallyhidden">Help</span></a>
+        </nav>
+    </div>
+
+<% end %>
