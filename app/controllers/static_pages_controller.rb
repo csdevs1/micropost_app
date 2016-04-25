@@ -15,6 +15,6 @@ class StaticPagesController < ApplicationController
     
     private
         def not_logged_in
-            redirect_to(current_user) unless !logged_in?
+            redirect_to(users_path) unless !logged_in?
         end
 end
